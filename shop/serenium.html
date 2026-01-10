@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serenium | Hate Shop</title>
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/imgs/web/22.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;500;700&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #050505;
+            --glass-bg: rgba(20, 20, 20, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --accent-green: #1ed760;
+            --accent-glow: rgba(30, 215, 96, 0.35);
+            --nav-height: 80px;
+        }
+        /* Minified to save space :P */
+        * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: #fff; min-height: 100vh; overflow-x: hidden; display: flex; flex-direction: column; }
+        .noise-overlay { position: fixed; inset: 0; pointer-events: none; z-index: -1; opacity: 0.04; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); }
+        .ambient-glow { position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); width: 80vw; height: 80vw; background: radial-gradient(circle, rgba(30, 215, 96, 0.03) 0%, transparent 70%); z-index: -2; pointer-events: none; }
+        .gradient-orb { position: fixed; bottom: -10%; right: -5%; width: 40vw; height: 40vw; background: radial-gradient(circle, #111, transparent); filter: blur(80px); z-index: -1; opacity: 0.6; }
+        
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; height: var(--nav-height); background: rgba(5, 5, 5, 0.9); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: space-between; padding: 0 50px; z-index: 1000; }
+        .nav-logo.logo-img img { height: 50px; width: auto; object-fit: contain; transform: scale(2); filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.15)); }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-item { color: #888; text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: all 0.3s; }
+        .nav-item:hover { color: #fff; }
+        
+        .product-detail-section { width: 100%; max-width: 1200px; margin: calc(var(--nav-height) + 40px) auto 0; padding: 40px 20px 120px; animation: fadeIn 0.4s ease; }
+        .detail-container { background: #0c0c0c; border: 1px solid var(--glass-border); border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; }
+        @media (min-width: 900px) { .detail-container { flex-direction: row; min-height: 600px; } }
+        .detail-left { width: 100%; height: 300px; position: relative; border-bottom: 1px solid var(--glass-border); }
+        @media (min-width: 900px) { .detail-left { width: 45%; height: auto; border-bottom: none; border-right: 1px solid var(--glass-border); } }
+        .detail-banner { width: 100%; height: 100%; object-fit: cover; }
+        .detail-right { padding: 40px; flex: 1; display: flex; flex-direction: column; }
+        .detail-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px; }
+        .detail-title { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; line-height: 1.1; }
+        .back-btn { background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: #fff; padding: 10px 15px; border-radius: 8px; cursor: pointer; transition: all 0.2s; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
+        .back-btn:hover { background: #fff; color: #000; }
+        .detail-desc { color: #ccc; line-height: 1.6; margin-bottom: 30px; font-size: 1.05rem; }
+        
+        .detail-tabs { display: flex; gap: 20px; margin-bottom: 20px; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; }
+        .detail-tab { background: none; border: none; color: #666; padding: 10px 0; cursor: pointer; font-family: 'Space Grotesk'; font-size: 1rem; transition: color 0.3s; position: relative; }
+        .detail-tab::after { content: ''; position: absolute; bottom: -11px; left: 0; width: 0%; height: 3px; background: var(--accent-green); transition: width 0.3s; }
+        .detail-tab.active { color: #fff; }
+        .detail-tab.active::after { width: 100%; }
+        .detail-tab-body { display: none; animation: fadeIn 0.4s; }
+        .detail-tab-body.active { display: block; }
+        
+        .info-list { display: flex; flex-direction: column; gap: 18px; }
+        .list-item { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; background: rgba(255,255,255,0.04); border: 1px solid transparent; border-radius: 12px; transition: all 0.2s; }
+        .list-item:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.1); }
+        .list-name { color: #ddd; font-weight: 500; font-size: 1rem; }
+        .list-status { color: var(--accent-green); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.2px; font-weight: 700; }
+        .list-status.soon { color: #555; }
+        
+        .exec-section { margin-bottom: 20px; }
+        .exec-header { font-size: 0.85rem; text-transform: uppercase; color: #666; margin-bottom: 10px; letter-spacing: 1.5px; border-left: 3px solid var(--accent-green); padding-left: 12px; }
+        .exec-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+        .exec-card { background: rgba(255,255,255,0.02); padding: 12px; border-radius: 8px; border: 1px solid transparent; display: flex; align-items: center; gap: 10px; transition: all 0.2s; }
+        .exec-card:hover { border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); }
+        .exec-icon { color: var(--accent-green); font-size: 0.9rem; }
+        .exec-name { font-size: 0.9rem; color: #ccc; }
+        
+        .payment-selection { margin-top: auto; border-top: 1px solid var(--glass-border); padding-top: 30px; }
+        .section-title { font-family: 'Space Grotesk'; font-size: 1.1rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .section-title i { color: var(--accent-green); font-size: 1rem; }
+        .payment-methods { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .pay-card { background: rgba(255,255,255,0.02); border: 2px solid var(--glass-border); border-radius: 18px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.3s; opacity: 0.6; }
+        .pay-card:hover { opacity: 0.9; border-color: rgba(255,255,255,0.2); transform: translateY(-3px); }
+        .pay-card.selected { border-color: var(--accent-green); background: rgba(30, 215, 96, 0.08); opacity: 1; box-shadow: 0 0 30px rgba(30, 215, 96, 0.15); }
+        .pay-type { font-size: 1.1rem; font-weight: 700; color: #fff; display: block; margin-bottom: 5px; font-family: 'Space Grotesk'; }
+        .pay-price { color: #aaa; font-size: 0.9rem; }
+        .pay-card.disabled { opacity: 0.3; pointer-events: none; border: 1px dashed var(--glass-border); }
+        .checkout-btn { width: 100%; padding: 18px; background: var(--accent-green); color: #000; font-family: 'Space Grotesk'; font-weight: 800; font-size: 1.1rem; border: none; border-radius: 14px; cursor: pointer; box-shadow: 0 5px 30px rgba(30, 215, 96, 0.4); transition: transform 0.2s; text-transform: uppercase; letter-spacing: 1px; margin-top: 25px; }
+        .checkout-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(30, 215, 96, 0.6); }
+        
+        .instructions-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 10000; display: none; align-items: center; justify-content: center; }
+        .instructions-modal.active { display: flex; animation: fadeIn 0.3s; }
+        .inst-box { background: #0c0c0c; border: 1px solid var(--accent-green); border-radius: 24px; width: 90%; max-width: 500px; padding: 40px; text-align: center; box-shadow: 0 0 50px rgba(30,215,96,0.3); }
+        .inst-step { margin-bottom: 25px; text-align: left; }
+        .step-num { color: var(--accent-green); font-family: 'Space Grotesk'; font-weight: 700; font-size: 1.4rem; margin-bottom: 8px; }
+        .step-text { color: #ccc; line-height: 1.7; }
+        .step-text b { color: #fff; }
+        .code-block { background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; margin-top: 15px; font-family: monospace; color: #ddd; border: 1px solid #333; }
+        
+        .footer { margin-top: auto; padding: 60px; background: rgba(0,0,0,0.5); border-top: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; }
+        .footer-left h3 { font-family: 'Syncopate'; font-size: 1.2rem; letter-spacing: 1px; }
+        .footer-left p { color: #555; margin-top: 5px; font-size: 0.9rem; }
+        .discord-widget { display: flex; align-items: center; gap: 15px; padding: 12px 25px; background: rgba(255,255,255,0.05); border-radius: 30px; border: 1px solid var(--glass-border); text-decoration: none; color: #fff; transition: 0.3s; cursor: pointer; }
+        .discord-widget:hover { background: rgba(30, 215, 96, 0.1); border-color: var(--accent-green); transform: translateY(-2px); }
+        .status-dot { width: 12px; height: 12px; background: #333; border-radius: 50%; transition: 0.3s; box-shadow: inset 0 0 4px rgba(0,0,0,0.5); }
+        .status-dot.online { background: var(--accent-green); box-shadow: 0 0 10px var(--accent-green), inset 0 0 4px rgba(0,0,0,0.3); }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+  </head>
+  <body>
+    <div class="noise-overlay"></div>
+    <div class="ambient-glow"></div>
+    <div class="gradient-orb"></div>
+    <nav class="navbar">
+      <a href="index.html" class="nav-logo logo-img">
+        <img src="/assets/imgs/web/embed.png" alt="Hate Shop Logo">
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-item">Shop</a>
+        <a href="https://discord.gg/QBAzqDxZRj" target="_blank" class="nav-item">Discord</a>
+      </div>
+    </nav>
+
+    <section class="product-detail-section" id="product-section">
+      <div class="detail-container">
+        <div class="detail-left">
+          <img src="" class="detail-banner" id="d-banner" alt="Product Banner">
+        </div>
+        <div class="detail-right">
+          <div class="detail-header">
+            <div class="detail-title" id="d-title">Product Name</div>
+            <button class="back-btn" onclick="window.location.href='../shop'">
+              <i class="fas fa-arrow-left"></i> Back 
+            </button>
+          </div>
+          <div class="detail-desc" id="d-desc">Description goes here.</div>
+          <div class="detail-tabs">
+            <button class="detail-tab active" onclick="switchTab('games')">Games</button>
+            <button class="detail-tab" onclick="switchTab('execs')">Executors</button>
+          </div>
+          <div id="tab-games" class="detail-tab-body active">
+            <div class="info-list" id="games-list"></div>
+          </div>
+          <div id="tab-execs" class="detail-tab-body">
+            <div class="exec-section">
+              <div class="exec-header">Paid Executors</div>
+              <div class="exec-grid" id="execs-paid"></div>
+            </div>
+            <div class="exec-section">
+              <div class="exec-header">Free Executors</div>
+              <div class="exec-grid" id="execs-free"></div>
+            </div>
+          </div>
+          <div class="payment-selection">
+            <div class="section-title">
+              <i class="fas fa-credit-card"></i> Select Payment Method
+            </div>
+            <div class="payment-methods" id="payment-grid"></div>
+            <button class="checkout-btn" onclick="processCheckout()">Proceed to Checkout</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="footer-left">
+        <h3>HATE SHOP</h3>
+        <p>The 11 View</p>
+      </div>
+      <div class="discord-widget" onclick="window.open('https://discord.com/users/1091592149105135686', '_blank')">
+        <div class="status-dot" id="footer-dot"></div>
+        <span>Made by p2w8, Hire me.</span>
+      </div>
+    </footer>
+    <div class="instructions-modal" id="checkout-modal">
+      <div class="inst-box">
+        <h2 style="font-family:'Space Grotesk'; font-size:1.8rem; margin-bottom:25px; color:#fff;">Instructions</h2>
+        <div class="inst-step">
+          <div class="step-num">01.</div>
+          <div class="step-text">Go to our Discord server and open a <b>Purchase Ticket</b>. </div>
+        </div>
+        <div class="inst-step">
+          <div class="step-num">02.</div>
+          <div class="step-text">Format your ticket exactly like this:</div>
+          <div class="code-block"> [Screen Shot of Transaction] <br>
+            <span id="dynamic-form-field">Method Details...</span>
+          </div>
+        </div>
+        <div class="inst-step">
+          <div class="step-num">03.</div>
+          <div class="step-text">Wait for a staff member to verify and deliver your key.</div>
+        </div>
+        <button class="checkout-btn" onclick="closeCheckout()">I Understand</button>
+      </div>
+    </div>
+    <script>
+        // Specific data for serenium
+        const currentProduct = {
+            id: 'serenium',
+            name: 'Serenium.hvh',
+            price: 7.50,
+            desc: 'Advanced hvh utility tailored specifically for Combat Warriors dominance.',
+            bannerUrl: '/assets/imgs/shop/id-serenium.jpg',
+            payments: [
+                { type: 'PayPal', price: 7.50, active: true, link: 'https://paypal.me/ipuw' },
+                { type: 'Robux', price: 2736, active: true, link: 'https://www.roblox.com/game-pass/1664165638/serenium-hvh' },
+                { type: 'Crypto', price: 7.50, active: true, link: 'https://discord.gg/serenium' }
+            ],
+            games: [
+                { name: 'Combat Warriors', status: 'Active' }
+            ],
+            executors: {
+                paid: ['Volt'],
+                free: ['None']
+            }
+        };
+
+        let selectedPayment = null;
+        const dBanner = document.getElementById('d-banner');
+        const dTitle = document.getElementById('d-title');
+        const dDesc = document.getElementById('d-desc');
+        const gamesList = document.getElementById('games-list');
+        const execsPaid = document.getElementById('execs-paid');
+        const execsFree = document.getElementById('execs-free');
+        const paymentGrid = document.getElementById('payment-grid');
+        const dynamicField = document.getElementById('dynamic-form-field');
+        const checkoutModal = document.getElementById('checkout-modal');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPageContent();
+            initLanyard();
+        });
+
+        function loadPageContent() {
+            dBanner.src = currentProduct.bannerUrl;
+            dTitle.textContent = currentProduct.name;
+            dDesc.textContent = currentProduct.desc;
+
+            gamesList.innerHTML = currentProduct.games.map(g => `
+                <div class="list-item">
+                    <span class="list-name">${g.name}</span>
+                    <span class="list-status ${g.status === 'Coming Soon' ? 'soon' : ''}">${g.status.toUpperCase()}</span>
+                </div>
+            `).join('');
+
+            execsPaid.innerHTML = currentProduct.executors.paid.map(e => `
+                <div class="exec-card">
+                    <i class="fas fa-syringe exec-icon"></i>
+                    <span class="exec-name">${e}</span>
+                </div>
+            `).join('');
+
+            execsFree.innerHTML = currentProduct.executors.free.map(e => `
+                <div class="exec-card">
+                    <i class="fas fa-code-branch exec-icon" style="opacity:0.6;"></i>
+                    <span class="exec-name">${e}</span>
+                </div>
+            `).join('');
+
+            paymentGrid.innerHTML = currentProduct.payments.map((p, index) => `
+                <div class="pay-card ${!p.active ? 'disabled' : ''}" onclick="selectPayment('${index}')">
+                    <div class="pay-type">${p.type}</div>
+                    <div class="pay-price">${p.price ? '$'+p.price : 'N/A'}</div>
+                </div>
+            `).join('');
+        }
+
+        function selectPayment(index) {
+            document.querySelectorAll('.pay-card').forEach(c => c.classList.remove('selected'));
+            const cards = paymentGrid.children;
+            if (cards[index] && !cards[index].classList.contains('disabled')) {
+                cards[index].classList.add('selected');
+                selectedPayment = currentProduct.payments[index];
+            }
+        }
+
+        function switchTab(tab) {
+            document.querySelectorAll('.detail-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.detail-tab-body').forEach(b => b.classList.remove('active'));
+            const index = tab === 'games' ? 0 : 1;
+            document.querySelectorAll('.detail-tab')[index].classList.add('active');
+            document.querySelectorAll('.detail-tab-body')[index].classList.add('active');
+        }
+
+        function processCheckout() {
+            if (!selectedPayment) {
+                showToast('Error', 'Please select a payment method first.');
+                return;
+            }
+            let details = "";
+            if (selectedPayment.type === 'Robux') details = "Roblox Username: [Your Username]";
+            if (selectedPayment.type === 'PayPal') details = "PayPal @Name: [Your Email]";
+            if (selectedPayment.type === 'Crypto') details = "Address & Currency: [Your Wallet]";
+            dynamicField.innerHTML = details;
+            checkoutModal.classList.add('active');
+        }
+
+        function closeCheckout() {
+            checkoutModal.classList.remove('active');
+            window.open(selectedPayment.link, '_blank');
+        }
+
+        function showToast(title, msg) {
+            const t = document.createElement('div');
+            t.className = 'toast';
+            t.style.cssText = "position:fixed; top:20px; right:20px; background:#0c0c0c; border:1px solid #1ed760; color:#fff; padding:15px 25px; border-radius:12px; box-shadow:0 10px 40px rgba(0,0,0,0.5); z-index:10001; font-family:'Space Grotesk'; animation:fadeIn 0.3s;";
+            t.innerHTML = `<i class="fas fa-info-circle" style="color:#1ed760; margin-right:10px;"></i> <b>${title}</b><br><span style="font-size:0.9rem; color:#aaa;">${msg}</span>`;
+            document.body.appendChild(t);
+            setTimeout(() => t.remove(), 4000);
+        }
+
+        const LANYARD_ID = "1091592149105135686";
+        function initLanyard() {
+            const socket = new WebSocket("wss://api.lanyard.rest/socket");
+            const footerDot = document.getElementById('footer-dot');
+            socket.onopen = () => {
+                socket.send(JSON.stringify({ op: 2, d: { subscribe_to_id: LANYARD_ID } }));
+            };
+            socket.onmessage = (e) => {
+                const data = JSON.parse(e.data);
+                if (data.op === 1) {
+                    setInterval(() => { socket.send(JSON.stringify({ op: 3 })); }, data.d.heartbeat_interval);
+                }
+                if (data.op === 0 && data.d) {
+                    const status = data.d.discord_status;
+                    footerDot.className = `status-dot ${status}`;
+                }
+            };
+        }
+    </script>
+  </body>
+</html>
