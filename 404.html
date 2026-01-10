@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 Not Found | Hate</title>
+<link rel="stylesheet" href="/styles/973651a9b600809d77a79e413874c305.css">
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-color);
+    color: var(--text-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.glass-card {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    padding: 50px 40px;
+    border-radius: 24px;
+    background: rgba(15,15,15,0.7);
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 60px rgba(0,0,0,0.6);
+    text-align: center;
+    animation: fadeIn 0.8s ease;
+}
+
+.glass-card h1 {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(255,255,255,0.05), 0 0 40px rgba(30,215,96,0.2);
+    letter-spacing: 1px;
+}
+
+.glass-card p {
+    font-family: 'Space Grotesk', sans-serif;
+    color: #aaa;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    line-height: 1.5;
+}
+
+.claim-input-container {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 30px;
+    display: none;
+}
+
+.claim-input {
+    flex: 1;
+    padding: 14px 20px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    user-select: all;
+    transition: all 0.3s;
+}
+
+.claim-input:hover {
+    border-color: rgba(30,215,96,0.4);
+}
+
+.glass-btn {
+    padding: 14px 32px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    box-shadow: 0 0 15px rgba(30,215,96,0.3);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.glass-btn:hover::after {
+    opacity: 1;
+}
+
+.glass-btn:hover {
+    background: rgba(10,10,10,0.65);
+    border-color: rgba(30,215,96,0.6);
+    transform: translateY(-2px);
+}
+
+.orb {
+    position: fixed;
+    border-radius: 50%;
+    background: rgba(30,215,96,0.03);
+    filter: blur(50px);
+    pointer-events: none;
+    animation: floatOrb 10s ease-in-out infinite;
+}
+
+.orb:nth-child(1){ width:120px; height:120px; top:10%; left:15%; }
+.orb:nth-child(2){ width:200px; height:200px; top:60%; left:75%; animation-delay:2s; }
+.orb:nth-child(3){ width:100px; height:100px; top:35%; left:50%; animation-delay:4s; }
+
+@keyframes floatOrb {
+    0% { transform: translateY(0px) scale(1);}
+    50% { transform: translateY(-60px) scale(1.1);}
+    100% { transform: translateY(0px) scale(1);}
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+</style>
+</head>
+<body>
+<div class="noise-overlay"></div>
+<div class="ambient-glow"></div>
+<div class="gradient-orb"></div>
+<div class="glass-card">
+    <h1 id="card-title">404 Not Found</h1>
+    <p id="card-subtext">The page you are looking for doesn't exist.</p>
+    <div class="claim-input-container" id="claim-container">
+        <input type="text" class="claim-input" id="claim-input" readonly>
+        <button class="glass-btn" onclick="window.location.href='/'">Claim Now</button>
+    </div>
+    <button class="glass-btn" id="home-btn" onclick="window.location.href='/'">Go Home</button>
+</div>
+<div class="orb"></div>
+<div class="orb"></div>
+<div class="orb"></div>
+
+<script>
+    const path = window.location.pathname;
+    const atMatch = path.match(/^\/@([^\/]+)$/);
+    if(atMatch){
+        const word = atMatch[1];
+        document.title = `Claim ${word} | Hate `;
+        document.getElementById('card-title').textContent = `${word} has not been claimed yet`;
+        document.getElementById('card-subtext').textContent = "Secure your unique link below:";
+        document.getElementById('claim-input').value = `hate.ink/@${word}`;
+        document.getElementById('claim-container').style.display = 'flex';
+        document.getElementById('home-btn').style.display = 'none';
+    }
+</script>
+</body>
+</html>
