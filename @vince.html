@@ -1,0 +1,215 @@
+<!--
+  _________  ___  ___  _______            _____    _____          ___      ___ ___  _______   ___       __      
+|\___   ___\\  \|\  \|\  ___ \          / __  \  / __  \        |\  \    /  /|\  \|\  ___ \ |\  \     |\  \    
+\|___ \  \_\ \  \\\  \ \   __/|        |\/_|\  \|\/_|\  \       \ \  \  /  / | \  \ \   __/|\ \  \    \ \  \   
+     \ \  \ \ \   __  \ \  \_|/__      \|/ \ \  \|/ \ \  \       \ \  \/  / / \ \  \ \  \_|/_\ \  \  __\ \  \  
+      \ \  \ \ \  \ \  \ \  \_|\ \          \ \  \   \ \  \       \ \    / /   \ \  \ \  \_|\ \ \  \|\__\_\  \ 
+       \ \__\ \ \__\ \__\ \_______\          \ \__\   \ \__\       \ \__/ /     \ \__\ \_______\ \____________\
+        \|__|  \|__|\|__|\|_______|           \|__|    \|__|        \|__|/       \|__|\|_______|\|____________|
+                                                                                                               
+      This HTML page was made @ The 11 View by Gravy (p2w8) for the project hate.ink (hash: 8c2ddf1d930865831770c8003fa1ca23)
+   Name: @vince.html
+   Description: undefined
+   License: undefined
+   Notes: Please do not edit anything unless you know exactly what you are editing and what you are replacing it with.
+         This project is open source, so feel free to use, modify, or build upon it (Skid it).
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vince | Bio</title>
+    <meta name="description" content="I love my friends">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Hate | @Vince">
+    <meta property="og:description" content="I love my friends">
+    <meta property="og:image" content="https://hate.ink/assets/twitter.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/imgs/web/22.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;500;700&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="theme-color" content="#F5F5F5"> 
+    <link rel="stylesheet" href="/styles/973651a9b600809d77a79e413874c305.css" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@300;400;500;700&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/main.css" type="text/css">
+  </head>
+  <body data-playlist-id="2">
+    <div class="noise-overlay"></div>
+    <div class="background-blob blob-1"></div>
+    <div class="background-blob blob-2"></div>
+    <div id="landing-screen">
+      <h1 class="landing-title" id="enter-btn">Vince</h1>
+      <div class="landing-sub">Click to Enter</div>
+    </div>
+    <div id="project-modal" class="modal-overlay">
+      <div class="modal-card">
+        <button class="close-modal-btn" onclick="closeModal()">
+          <i class="fas fa-times"></i>
+        </button>
+        <img src="/assets/imgs/shop/id-serenium.jpg" class="modal-image" alt="Project Image">
+        <div class="modal-header">
+          <div class="modal-title">Serenium</div>
+          <div class="modal-sub">#1 Combat Warriors Modifications Utility</div>
+        </div>
+        <div class="modal-section">
+          <div class="section-label">Supported Games</div>
+          <div class="modal-list">
+            <div class="list-item">Combat Warriors</div>
+          </div>
+        </div>
+        <div class="modal-section">
+          <div class="section-label">Supported Executors</div>
+          <div class="modal-list executors">
+            <div class="executor-group">
+              <div class="executor-header">
+                <i class="fas fa-crown"></i>
+                <span>Paid Executors</span>
+              </div>
+              <div class="executor-item">Potassium</div>
+              <div class="executor-item">Seliware</div>
+              <div class="executor-item">Volcano</div>
+              <div class="executor-item">Wave</div>
+              <div class="executor-item">Volt</div>
+            </div>
+            <div class="executor-group">
+              <div class="executor-header">
+                <i class="fas fa-gift"></i>
+                <span>Free Executors</span>
+              </div>
+              <div class="executor-item">None</div>
+            </div>
+          </div>
+        </div>
+        <button class="modal-join-btn" onclick="showToast('Redirecting', 'Opening Discord Server...'); setTimeout(() => { window.open('https://discord.gg/serenium','_blank'); }, 1000);">Join Discord</button>
+      </div>
+    </div>
+    <div id="notification-container"></div>
+    <div id="main-content">
+      <div class="card" id="main-card">
+        <div class="card-inner">
+          <div class="banner-container" id="banner">
+            <div class="banner-overlay"></div>
+          </div>
+          <div class="profile-section">
+            <div class="pfp-wrapper">
+              <img src="" alt="PFP" class="pfp" id="pfp">
+              <div class="status-indicator">
+                <div class="status-dot-inner" id="status-dot"></div>
+              </div>
+            </div>
+            <div class="user-details">
+              <div class="username-container" id="username-trigger" title="Click to copy">
+                <span class="username">Vince</span>
+                <div class="badges-container">
+                  <div class="badge-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <div class="badge-tooltip">Verified</div>
+                  </div>
+                  <div class="badge-item">
+                    <i class="fas fa-code"></i>
+                    <div class="badge-tooltip">Developer</div>
+                  </div>
+                  <div class="badge-item">
+                    <i class="fas fa-star"></i>
+                    <div class="badge-tooltip">Premium User</div>
+                  </div>
+                </div>
+              </div>
+              <div class="bio">i love my friends</div>
+            </div>
+          </div>
+          <div class="activity-container" id="activity-box">
+            <div class="act-thumb-wrapper">
+              <img src="" class="act-img" id="act-img">
+              <div class="act-icon-overlay" id="act-icon"></div>
+            </div>
+            <div class="act-info">
+              <div class="act-type" id="act-type">LOADING</div>
+              <div class="act-name" id="act-name">Loading Lanyard...</div>
+              <div class="act-state" id="act-state"></div>
+            </div>
+          </div>
+          <div class="tabs-wrapper">
+            <button class="tab active" onclick="openTab('links')">Links</button>
+            <button class="tab" onclick="openTab('projects')">Projects</button>
+            <button class="tab" onclick="openTab('shop')">Shop</button>
+          </div>
+          <div id="links-tab" class="tab-content active">
+            <a href="#" class="link-card" onclick="showToast('Redirecting', 'Opening Discord Server...'); setTimeout(() => { window.open('https://discord.gg/serenium','_blank'); }, 1000)">
+              <div class="link-left">
+                <i class="fab fa-discord"></i>Community Server
+              </div>
+              <i class="fas fa-arrow-up-right-from-square link-arrow"></i>
+            </a>
+            <a href="#" class="link-card" onclick="handleLinkClick(event, 'GitHub'); setTimeout(() => {window.open('https://github.com/sereniumhvh', '_blank');}, 1000 )">
+              <div class="link-left">
+                <i class="fab fa-github"></i>GitHub
+              </div>
+              <i class="fas fa-arrow-up-right-from-square link-arrow"></i>
+            </a>
+          </div>
+          <div id="projects-tab" class="tab-content">
+            <div class="link-card" onclick="openModal()">
+              <div class="link-left">
+                <i class="fas fa-terminal"></i>Project: Serenium
+              </div>
+            </div>
+          </div>
+          <div id="shop-tab" class="tab-content">
+            <div class="link-card" onclick="showToast('Shop', 'Redirecting to Checkout...'), setTimeout(() => {window.open('/shop', '_blank');}, 1000 )">
+              <div class="link-left">
+                <i class="fas fa-crown"></i>Serenium <span style="color:var(--text-gray); margin-left:auto; font-size:0.8rem">$7.50</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="music-player-dock" id="music-dock">
+      <div class="dock-left">
+        <img src="https://picsum.photos/seed/music/150/150" class="music-thumbnail" id="m-thumb">
+        <div class="play-overlay" onclick="togglePlay()">
+          <i class="fas fa-play" style="color: white; font-size: 1.4rem; margin-left: 2px;"></i>
+        </div>
+      </div>
+      <div class="dock-center">
+        <div class="song-info" onclick="togglePlay()">
+          <span class="song-title" id="m-song">Select a Track</span>
+          <span class="song-artist" id="m-artist">Custom Player</span>
+        </div>
+        <div class="progress-container">
+          <span class="time-text" id="curr-time">0:00</span>
+          <div class="player-progress-wrapper" id="progress-wrapper">
+            <div class="player-progress-fill" id="m-progress"></div>
+            <div class="player-progress-thumb" id="progress-thumb"></div>
+          </div>
+          <span class="time-text" id="dur-time">0:00</span>
+        </div>
+      </div>
+      <div class="dock-right">
+        <div class="main-btns">
+          <button class="ctrl-btn" onclick="prevTrack()">
+            <i class="fas fa-backward-step"></i>
+          </button>
+          <button class="ctrl-btn play-btn-lg" id="m-play" onclick="togglePlay()">
+            <i class="fas fa-play"></i>
+          </button>
+          <button class="ctrl-btn" onclick="nextTrack()">
+            <i class="fas fa-forward-step"></i>
+          </button>
+        </div>
+        <div class="volume-wrapper">
+          <i class="fas fa-volume-up volume-icon"></i>
+          <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.8" id="volume-slider">
+        </div>
+      </div>
+    </div>
+    <audio id="audio-player" preload="metadata"></audio>
+    <script src="assets/scripts/index.js"></script>
+  </body>
+</html>

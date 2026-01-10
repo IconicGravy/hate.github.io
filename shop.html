@@ -1,0 +1,132 @@
+<!--
+  _________  ___  ___  _______            _____    _____          ___      ___ ___  _______   ___       __      
+|\___   ___\\  \|\  \|\  ___ \          / __  \  / __  \        |\  \    /  /|\  \|\  ___ \ |\  \     |\  \    
+\|___ \  \_\ \  \\\  \ \   __/|        |\/_|\  \|\/_|\  \       \ \  \  /  / | \  \ \   __/|\ \  \    \ \  \   
+     \ \  \ \ \   __  \ \  \_|/__      \|/ \ \  \|/ \ \  \       \ \  \/  / / \ \  \ \  \_|/_\ \  \  __\ \  \  
+      \ \  \ \ \  \ \  \ \  \_|\ \          \ \  \   \ \  \       \ \    / /   \ \  \ \  \_|\ \ \  \|\__\_\  \ 
+       \ \__\ \ \__\ \__\ \_______\          \ \__\   \ \__\       \ \__/ /     \ \__\ \_______\ \____________\
+        \|__|  \|__|\|__|\|_______|           \|__|    \|__|        \|__|/       \|__|\|_______|\|____________|
+                                                                                                               
+      This HTML page was made @ The 11 View by Gravy (p2w8) for the project hate.ink (hash: 7b089bb123d48609f5117d70331b05e1)
+   Name: shop.html
+   Description: undefined
+   License: undefined
+   Notes: Please do not edit anything unless you know exactly what you are editing and what you are replacing it with.
+         This project is open source, so feel free to use, modify, or build upon it (Skid it).
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hate Shop | Premium Scripts</title>
+    <meta name="description" content="Hate Shop offers premium, high-performance scripts built for reliability, speed, and quality.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Hate Shop | Premium Scripts">
+    <meta property="og:description" content="Premium, high-performance scripts designed for quality and reliability.">
+    <meta property="og:url" content="https://hate.ink">
+    <meta property="og:image" content="https://hate.ink/assets/twitter.png">
+    <meta property="og:image:width" content="256">
+    <meta property="og:image:height" content="256">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Hate Shop | Premium Scripts">
+    <meta name="twitter:description" content="Premium, high-performance scripts designed for quality and reliability.">
+    <meta name="twitter:image" content="https://hate.ink/assets/twitter.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/imgs/web/22.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;500;700&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="theme-color" content="#F5F5F5"> 
+    <link rel="stylesheet" href="/styles/973651a9b600809d77a79e413874c305.css" type="text/css">
+  </head>
+  <body>
+    <div class="noise-overlay"></div>
+    <div class="ambient-glow"></div>
+    <div class="gradient-orb"></div>
+    <nav class="navbar">
+      <a href="/" class="nav-logo logo-img">
+        <img src="/assets/imgs/web/embed.png" alt="Hate Shop Logo">
+      </a>
+      <div class="nav-links">
+        <a href="https://discord.gg/QBAzqDxZRj" target="_blank" class="nav-item">Discord</a>
+      </div>
+    </nav>
+    <section class="hero">
+      <h1>Premium Scripts & Utilities</h1>
+      <p>Unlock your full potential with undetected, high-performance scripts tailored for top executors.</p>
+    </section>
+    <div class="main-container" id="shop-grid"></div>
+    <section class="product-detail-section" id="product-section">
+      <div class="detail-container">
+        <div class="detail-left">
+          <img src="" class="detail-banner" id="d-banner" alt="Product Banner">
+        </div>
+        <div class="detail-right">
+          <div class="detail-header">
+            <div class="detail-title" id="d-title">Product Name</div>
+            <button class="back-btn" onclick="goBackToShop()">
+              <i class="fas fa-arrow-left"></i> Back </button>
+          </div>
+          <div class="detail-desc" id="d-desc">Description goes here.</div>
+          <div class="detail-tabs">
+            <button class="detail-tab active" onclick="switchTab('games')">Games</button>
+            <button class="detail-tab" onclick="switchTab('execs')">Executors</button>
+          </div>
+          <div id="tab-games" class="detail-tab-body active">
+            <div class="info-list" id="games-list"></div>
+          </div>
+          <div id="tab-execs" class="detail-tab-body">
+            <div class="exec-section">
+              <div class="exec-header">Paid Executors</div>
+              <div class="exec-grid" id="execs-paid"></div>
+            </div>
+            <div class="exec-section">
+              <div class="exec-header">Free Executors</div>
+              <div class="exec-grid" id="execs-free"></div>
+            </div>
+          </div>
+          <div class="payment-selection">
+            <div class="section-title">
+              <i class="fas fa-credit-card"></i> Select Payment Method
+            </div>
+            <div class="payment-methods" id="payment-grid"></div>
+            <button class="checkout-btn" onclick="processCheckout()">Proceed to Checkout</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="footer-left">
+        <h3>HATE SHOP</h3>
+        <p>The 11 View</p>
+      </div>
+      <a href="#" class="discord-widget" onclick="window.open('https://discord.com/users/1091592149105135686', '_blank')">
+        <div class="status-dot" id="footer-dot"></div>
+        <span>Made by p2w8, Hire me.</span>
+      </a>
+    </footer>
+    <div class="instructions-modal" id="checkout-modal">
+      <div class="inst-box">
+        <h2 style="font-family:'Space Grotesk'; font-size:1.8rem; margin-bottom:25px; color:#fff;">Instructions</h2>
+        <div class="inst-step">
+          <div class="step-num">01.</div>
+          <div class="step-text">Go to our Discord server and open a <b>Purchase Ticket</b>. </div>
+        </div>
+        <div class="inst-step">
+          <div class="step-num">02.</div>
+          <div class="step-text">Format your ticket exactly like this:</div>
+          <div class="code-block"> [Screen Shot of Transaction] <br>
+            <span id="dynamic-form-field">Method Details...</span>
+          </div>
+        </div>
+        <div class="inst-step">
+          <div class="step-num">03.</div>
+          <div class="step-text">Wait for a staff member to verify and deliver your key.</div>
+        </div>
+        <button class="checkout-btn" onclick="closeCheckout()">I Understand</button>
+      </div>
+    </div>
+    <script src="assets/scripts/973651a9b600809d77a79e413874c305.js"></script>
+  </body>
+</html>
