@@ -2,16 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Redirecting...</title>
-  <meta http-equiv="refresh" content="0; url=https://gravy.cfd/docs/?file=offline.txt">
+  <title>Website Offline</title>
+  <meta http-equiv="refresh" content="10; url=https://gravy.cfd/docs/?file=offline.txt">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #0f0f0f;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    .box {
+      max-width: 500px;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    p {
+      opacity: 0.8;
+    }
+  </style>
   <script>
-    window.location.replace("https://gravy.cfd/docs/?file=offline.txt");
+    setTimeout(function() {
+      window.location.replace("https://gravy.cfd/docs/?file=offline.txt");
+    }, 10000);
   </script>
 </head>
 <body>
-  <p>If you are not redirected automatically, 
-    <a href="https://gravy.cfd/docs/?file=offline.txt">click here</a>.
-  </p>
+  <div class="box">
+    <h1>Hello, traveller. Your IP, and Machine ID has been recorded and sent to 861.</h1>
+    <p>You will be redirected in 10 seconds...</p>
+    <p>If you are not redirected automatically, 
+      <a href="https://gravy.cfd/docs/?file=offline.txt" style="color:#4da6ff;">
+        click here
+      </a>.
+    </p>
+  </div>
 </body>
 </html>
 
@@ -231,3 +264,4 @@
   </body>
 </html>
 -->
+
